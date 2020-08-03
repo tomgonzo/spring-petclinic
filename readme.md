@@ -1,4 +1,4 @@
-# Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/) [![Known Vulnerabilities](https://snyk.io/test/github/omearaj/spring-petclinic/badge.svg)](https://snyk.io/test/github/omearaj/spring-petclinic)
+# Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/) [![Known Vulnerabilities](https://snyk.io/test/github/omearaj/spring-petclinic/badge.svg)](https://snyk.io/test/github/omearaj/spring-petclinic)![Build,Push Image CI](https://github.com/snyk-partners/spring-petclinic/workflows/Build,Push%20Image%20CI/badge.svg)
 
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
