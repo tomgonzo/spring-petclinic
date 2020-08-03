@@ -170,7 +170,7 @@
        </executions>
        <configuration>
          <apiToken>${SNYK_API_TOKEN}</apiToken> 
-         <failOnSeverity>medium</failOnSeverity>
+         <failOnSeverity>false</failOnSeverity>
          <org>demo-3rw</org>
        </configuration>
       </plugin>
