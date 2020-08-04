@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME --build-arg JAR_FILE=spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --build-arg JAR_FILE=/home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_KEY }}" | docker login ${{ secrets.CONTAINER_REGISTRY_URL }} -u ${{ secrets.DOCKER_USERID }} --password-stdin
