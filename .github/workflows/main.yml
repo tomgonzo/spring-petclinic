@@ -56,7 +56,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: spring-petclinic
-        path: $GITHUB_WORKSPACE/target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
+        path: ${{ github_workspace }}/target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
         if-no-files-found: warn #
         
   # Push image to Container Registry
