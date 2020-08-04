@@ -9,9 +9,11 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
+  CONTAINER_REGISTRY_URL: https://registry.hub.docker.com
+  REGISRTY_USERID: omearaj  
   IMAGE_NAME: spring-petclinic
   VERSION: latest
-  IMAGE_PATH: ${{ secrets.CONTAINER_REGISTRY_URL }}/${{ secrets.DOCKER_USERID }}/$IMAGE_NAME:$VERSION
+  IMAGE_PATH: $CONTAINER_REGISTRY_URL/$REGISTRY_USERID/$IMAGE_NAME:$VERSION
 
 jobs:
 
@@ -68,13 +70,13 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
-        run: echo "${{ secrets.DOCKER_KEY }}" | docker login ${{ secrets.CONTAINER_REGISTRY_URL }} -u ${{ secrets.DOCKER_USERID }} --password-stdin
+        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
 
       - name: Push image
         env: 
-          DOCKER_REPO: ${{ secrets.DOCKER_USERID }}
+          DOCKER_REPO: $REGISRTY_USERID
         run: |
-          IMAGE_ID=${{ secrets.CONTAINER_REGISTRY_URL }}/$DOCKER_REPO/$IMAGE_NAME
+          IMAGE_ID=$CONTAINER_REGISTRY_URL/$DOCKER_REPO/$IMAGE_NAME
           echo $IMAGE_PATH
           echo $IMAGE_NAME 
           echo $VERSION
