@@ -47,12 +47,12 @@ jobs:
         if-no-files-found: warn #
         
   # Push image to Container Registry
-  push:
+  push Docker Image:
     # Ensure test job passes before pushing image.
     needs: build
 
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'push Docker Image'
 
     steps:
       - uses: actions/checkout@v2
@@ -66,7 +66,7 @@ jobs:
         run: ls -R
         #working-directory: path/to/artifact
 
-      - name: Build image
+      - name: Build image with Docker
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
@@ -82,3 +82,41 @@ jobs:
           echo $VERSION
           docker tag $IMAGE_NAME $IMAGE_PATH
           docker push $IMAGE_PATH
+  
+  push CN Image:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event-name= 'push CN Image'
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/download-artifact@v2
+        with:
+         name: spring-petclinic
+         #path: /usr
+    
+      - name: Display structure of downloaded files
+        run: ls -R
+      
+      - name: Build image with Cloud Native Buildpacks
+        uses: mamezou-tech/buildpacks-action@master
+        with:
+          image: 'spring-pet-buildpack'
+          tag: '1.0.0'
+          path: 'spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
+          builder: 'gcr.io/paketo-buildpacks/builder:base'
+          
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin:  
+      
+      - name: Push image
+        env: 
+          DOCKER_REPO: $REGISRTY_USERID
+        run: |
+          IMAGE_ID=$CONTAINER_REGISTRY_URL/$DOCKER_REPO/$IMAGE_NAME
+          echo $IMAGE_PATH
+          echo $IMAGE_NAME 
+          echo $VERSION
+      #    docker tag $IMAGE_NAME $IMAGE_PATH
+      #    docker push $IMAGE_PATH:  
