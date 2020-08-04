@@ -13,8 +13,9 @@ env:
   CONTAINER_REGISTRY_URL: https://registry.hub.docker.com
   REGISTRY_USERID: omearaj  
   IMAGE_NAME: spring-petclinic
-  IMAGE_BP_NAME: spring-petclinic-bp  
+  IMAGE_BP_NAME: omearaj/spring-petclinic-bp  
   VERSION: latest
+  BP_JVM_VERSION: 8.*  
 
 jobs:
 
@@ -109,6 +110,9 @@ jobs:
     
       - name: Display structure of downloaded files
         run: ls -R
+        
+      - name: Set env BP Version
+        run: echo ::set-env name=BP_JVM_VERSION::${{ env.BP_JVM_VERSION }}
       
       - name: Build image with Cloud Native Buildpacks
         env:
@@ -124,12 +128,4 @@ jobs:
         run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
       
       - name: Push image
-        env: 
-          DOCKER_REPO: $REGISRTY_USERID
-        run: |
-          IMAGE_ID=$CONTAINER_REGISTRY_URL/$DOCKER_REPO/$IMAGE_NAME
-          echo $IMAGE_PATH
-          echo $IMAGE_NAME 
-          echo $VERSION
-      #    docker tag $IMAGE_NAME $IMAGE_PATH
-      #    docker push $IMAGE_PATH:  
+        run: docker push $IMAGE_BP_PATH
