@@ -13,7 +13,7 @@ env:
   REGISRTY_USERID: omearaj  
   IMAGE_NAME: spring-petclinic
   VERSION: latest
-  IMAGE_PATH: ${{ env.CONTAINER_REGISTRY_URL }}/${{ env.REGISTRY_USERID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+  IMAGE_PATH: ${{ CONTAINER_REGISTRY_URL }}/${{ REGISTRY_USERID }}/${{ IMAGE_NAME }}:${{ VERSION }}
 
 jobs:
 
