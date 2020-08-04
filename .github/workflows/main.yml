@@ -90,7 +90,7 @@ jobs:
 
       - name: Push image
         env: 
-          DOCKER_REPO: $REGISRTY_USERID
+          DOCKER_REPO: $REGISTRY_USERID
         run: |
           IMAGE_ID=$CONTAINER_REGISTRY_URL/$DOCKER_REPO/$IMAGE_NAME
           echo $IMAGE_PATH
