@@ -60,7 +60,7 @@ jobs:
         if-no-files-found: warn #
         
   # Push image to Container Registry
-  push Docker Image:
+  push-Docker-Image:
     # Ensure test job passes before pushing image.
     needs: build
 
@@ -96,7 +96,7 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_PATH
           docker push $IMAGE_PATH
   
-  push CN Image:
+  push-CN-Image:
     needs: build
     runs-on: ubuntu-latest
     if: github.event-name= 'push CN Image'
