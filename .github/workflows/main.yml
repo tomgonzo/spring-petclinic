@@ -40,8 +40,8 @@ jobs:
         mvn install --file pom.xml -Prun-its
     - uses: actions/upload-artifact@v2
       with:
-        name: Spring-Petclinic
-        path: /home/runner/work/spring-petclinic/spring-petclinic/target/
+        name: spring-petclinic
+        path: /home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
         if-no-files-found: warn #
         
   # Push image to Container Registry
@@ -57,12 +57,12 @@ jobs:
       
       - uses: actions/download-artifact@v2
         with:
-         name: Spring-Petclinic
+         name: spring-petclinic
          #path: /usr
     
       - name: Display structure of downloaded files
         run: ls -R
-      #working-directory: path/to/artifact
+        #working-directory: path/to/artifact
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --build-arg JAR_FILE=/home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
