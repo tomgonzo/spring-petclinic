@@ -65,7 +65,7 @@ jobs:
         #working-directory: path/to/artifact
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME --build-arg JAR_FILE=/home/runner/work/spring-petclinic/spring-petclinic/target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_KEY }}" | docker login ${{ secrets.CONTAINER_REGISTRY_URL }} -u ${{ secrets.DOCKER_USERID }} --password-stdin
@@ -76,5 +76,7 @@ jobs:
         run: |
           IMAGE_ID=${{ secrets.CONTAINER_REGISTRY_URL }}/$DOCKER_REPO/$IMAGE_NAME
           echo $IMAGE_PATH
+          echo $IMAGE_NAME 
+          echo $VERSION
           docker tag $IMAGE_NAME $IMAGE_PATH
           docker push $IMAGE_PATH
