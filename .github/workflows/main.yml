@@ -57,7 +57,7 @@ jobs:
       
       - uses: actions/download-artifact@v2
         with:
-         name: Spring-Petclinic
+        name: Spring-Petclinic
          #path: /usr
     
     - name: Display structure of downloaded files
