@@ -13,7 +13,7 @@ env:
   REGISRTY_USERID: omearaj  
   IMAGE_NAME: spring-petclinic
   VERSION: latest
-  IMAGE_PATH: $CONTAINER_REGISTRY_URL/$REGISTRY_USERID/$IMAGE_NAME:$VERSION
+  IMAGE_PATH: ${{ env.CONTAINER_REGISTRY_URL }}/${{ env.REGISTRY_USERID }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
 jobs:
 
@@ -89,7 +89,7 @@ jobs:
         env: 
           DOCKER_REPO: $REGISRTY_USERID
         run: |
-          IMAGE_ID=$CONTAINER_REGISTRY_URL/$DOCKER_REPO/$IMAGE_NAME
+          IMAGE_ID=${{ env.CONTAINER_REGISTRY_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME}}
           echo $IMAGE_PATH
           echo $IMAGE_NAME 
           echo $VERSION
