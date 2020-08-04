@@ -65,7 +65,7 @@ jobs:
     needs: build
 
     runs-on: ubuntu-latest
-    if: github.event_name == 'push Docker Image'
+    if: github.event_name == 'push-Docker-Image'
 
     steps:
       - uses: actions/checkout@v2
@@ -99,7 +99,7 @@ jobs:
   push-CN-Image:
     needs: build
     runs-on: ubuntu-latest
-    if: github.event-name= 'push CN Image'
+    if: github.event-name= 'push-CN-Image'
     
     steps:
       - uses: actions/checkout@v2
