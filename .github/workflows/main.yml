@@ -86,7 +86,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
-        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISRTY_USERID --password-stdin
+        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
 
       - name: Push image
         env: 
@@ -126,7 +126,7 @@ jobs:
           builder: 'gcr.io/paketo-buildpacks/builder:base'
           
       - name: Log into registry
-        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISRTY_USERID --password-stdin
+        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
       
       - name: Push image
         env: 
