@@ -113,6 +113,8 @@ jobs:
         run: ls -R
       
       - name: Build image with Cloud Native Buildpacks
+        env:
+          BP_JVM_VERSION: 8.*
         uses: mamezou-tech/buildpacks-action@master
         with:
           image: 'spring-pet-buildpack'
