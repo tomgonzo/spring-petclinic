@@ -12,6 +12,7 @@ env:
   CONTAINER_REGISTRY_URL: https://registry.hub.docker.com
   REGISTRY_USERID: omearaj  
   IMAGE_NAME: spring-petclinic
+  IMAGE_BP_NAME: spring-petclinic-bp  
   VERSION: latest
 
 jobs:
@@ -119,7 +120,7 @@ jobs:
           BP_JVM_VERSION: 8.*
         uses: mamezou-tech/buildpacks-action@master
         with:
-          image: 'spring-pet-buildpack'
+          image: $IMAGE_BP_NAME
           tag: '1.0.0'
           path: 'spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
           builder: 'gcr.io/paketo-buildpacks/builder:base'
