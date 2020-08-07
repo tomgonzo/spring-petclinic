@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: petclinic
@@ -6,6 +6,9 @@ metadata:
     app: petclinic
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
   template:
     metadata:
       labels:
@@ -13,22 +16,10 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: springdeveloper/spring-petclinic:2.0.0.BUILD-SNAPSHOT
+        image: omearaj/spring-petclinic:main
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-        livenessProbe:
-          httpGet:
-            path: /manage/health
-            port: 8080
-          initialDelaySeconds: 60
-          periodSeconds: 5
-        readinessProbe:
-          httpGet:
-            path: /manage/health
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 5
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: 'production,kubernetes'
