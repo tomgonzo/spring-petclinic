@@ -87,7 +87,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
         
       - name: list images
-        run: docker imaages
+        run: docker images
 
       - name: Push image
 #        env: 
