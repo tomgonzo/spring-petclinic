@@ -38,6 +38,12 @@ jobs:
       with:
         java-version: 1.8
     
+    - name: test Java
+      run: /opt/hostedtoolcache/jdk/8.0.265/x64/bin/java -version
+    
+    - name: Java HOME TEST 
+      run: echo $JAVA_HOME
+      
     - uses: actions/checkout@master
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/node@master
