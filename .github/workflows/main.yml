@@ -84,3 +84,11 @@ jobs:
          repository: omearaj/${{ env.IMAGE_NAME }}
          tag_with_ref: true  
          #tags: latest
+      
+      - name: Run Snyk to check Docker images for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+        with:
+         image: omearaj/${{ env.IMAGE_NAME }}
+         args: --severity-threshold=high  
