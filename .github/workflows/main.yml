@@ -75,20 +75,28 @@ jobs:
         with:
          name: spring-petclinic
          #path: /usr
+           
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v1
+        with:
+         username: ${{ evn.REGISTRY_USERID }}
+         password: ${{ secrets.DOCKER_KEY }}
+         repository: omearaj/${{ env.IMAGE_NAME }}
+         tags: latest
        
       - name: Set env Image Tag
         run: echo ::set-env name=IMAGE_TAG::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_NAME}}:${{ env.VERSION }}
 
       - name: Build image with Docker
-        run: docker build . --file Dockerfile --tag $IMAGE_TAG
+        #run: docker build . --file Dockerfile --tag $IMAGE_TAG
 
       - name: Log into registry
-        run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
+        #run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
         
       - name: list images
-        run: docker images
+        #run: docker images
 
       - name: Push image
 #        env: 
 #          DOCKER_REPO: $REGISTRY_USERID
-        run: docker push $IMAGE_TAG
+        #run: docker push $IMAGE_TAG
