@@ -93,4 +93,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
          image: omearaj/${{ env.IMAGE_NAME }}
-         args: --severity-threshold=high  
+         #args: --severity-threshold=high  
