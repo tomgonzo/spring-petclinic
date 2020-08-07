@@ -13,9 +13,9 @@ env:
   CONTAINER_REGISTRY_URL: https://registry.hub.docker.com
   REGISTRY_USERID: omearaj  
   IMAGE_NAME: spring-petclinic
-  IMAGE_BP_NAME: omearaj/spring-petclinic-bp  
-  VERSION: latest
-  BP_JVM_VERSION: 8.*  
+  #IMAGE_BP_NAME: omearaj/spring-petclinic-bp  
+  VERSION: v1.0.0
+  #BP_JVM_VERSION: 8.*  
 
 jobs:
 
@@ -76,11 +76,7 @@ jobs:
         with:
          name: spring-petclinic
          #path: /usr
-    
-      - name: Display structure of downloaded files
-        run: ls -R
-        #working-directory: path/to/artifact
-    
+       
       - name: Set env Image Path
         run: echo ::set-env name=IMAGE_PATH::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_NAME}}:${{ env.VERSION }}
 
@@ -89,6 +85,9 @@ jobs:
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
+        
+      - name: list images
+        run: docker imaages
 
       - name: Push image
 #        env: 
