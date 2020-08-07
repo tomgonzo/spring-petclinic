@@ -61,7 +61,7 @@ jobs:
         if-no-files-found: warn #
         
   # Push image to Container Registry
-  build_&_push-Image:
+  build_and_push-Image:
     # Ensure test job passes before pushing image.
     needs: build
 
