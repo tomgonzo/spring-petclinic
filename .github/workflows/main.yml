@@ -79,7 +79,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v1
         with:
-         username: ${{ evn.REGISTRY_USERID }}
+         username: ${{ env.REGISTRY_USERID }}
          password: ${{ secrets.DOCKER_KEY }}
          repository: omearaj/${{ env.IMAGE_NAME }}
          tags: latest
