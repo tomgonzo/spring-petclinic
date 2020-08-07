@@ -63,7 +63,7 @@ jobs:
   # Push image to Container Registry
   build_and_push-Image:
     # Ensure test job passes before pushing image.
-    needs: build
+    needs: build_mvn_aritfact
 
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -82,4 +82,5 @@ jobs:
          username: ${{ env.REGISTRY_USERID }}
          password: ${{ secrets.DOCKER_KEY }}
          repository: omearaj/${{ env.IMAGE_NAME }}
-         tags: latest
+         tag_with_ref: true  
+         #tags: latest
