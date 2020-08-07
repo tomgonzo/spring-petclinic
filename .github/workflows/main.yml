@@ -77,11 +77,11 @@ jobs:
          name: spring-petclinic
          #path: /usr
        
-      - name: Set env Image Path
-        run: echo ::set-env name=IMAGE_PATH::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_NAME}}:${{ env.VERSION }}
+      - name: Set env Image Tag
+        run: echo ::set-env name=IMAGE_TAG::${{ env.CONTAINER_REGISTRY_URL }}/${{ env.REGISTRY_USERID}}/${{ env.IMAGE_NAME}}:${{ env.VERSION }}
 
       - name: Build image with Docker
-        run: docker build . --file Dockerfile --tag $IMAGE_PATH
+        run: docker build . --file Dockerfile --tag $IMAGE_TAG
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_KEY }}" | docker login $CONTAINER_REGISTRY_URL -u $REGISTRY_USERID --password-stdin
@@ -92,7 +92,7 @@ jobs:
       - name: Push image
 #        env: 
 #          DOCKER_REPO: $REGISTRY_USERID
-        run: docker push $IMAGE_PATH
+        run: docker push $IMAGE_TAG
   
   push-CN-Image:
     needs: build
