@@ -17,6 +17,24 @@ env:
   #IMAGE_BP_NAME: omearaj/spring-petclinic-bp:  
 
 jobs:
+  snyk_vulnerability_check:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 13
+        
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+         SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+        with:
+         command: monitor
 
   build_mvn_aritfact:
 
