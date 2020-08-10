@@ -17,20 +17,20 @@ env:
   #IMAGE_BP_NAME: omearaj/spring-petclinic-bp:  
 
 jobs:
-  snyk_vulnerability_check:
+  #snyk_vulnerability_check:
     
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    #runs-on: ubuntu-latest
+    #steps:
+    #  - name: Checkout
+    #    uses: actions/checkout@v2
       
-      - name: Cache local Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+    #  - name: Cache local Maven repository
+    #    uses: actions/cache@v2
+    #    with:
+    #      path: ~/.m2/repository
+    #      key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+    #      restore-keys: |
+    #        ${{ runner.os }}-maven-
 
       # Snyk works w/o this
       #- name: JDK
@@ -38,18 +38,18 @@ jobs:
       #  with:
       #    java-version: 13
 
-      - name: Run Snyk to check for Maven vulnerabilities
-        uses: snyk/actions/maven@master
-        continue-on-error: false
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-          SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-        with:
-          command: monitor
+     # - name: Run Snyk to check for Maven vulnerabilities
+     #   uses: snyk/actions/maven@master
+     #   continue-on-error: false
+     #   env:
+     #     SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+     #     SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+     #   with:
+     #     command: monitor
 
   build_mvn_aritfact:
 
-    needs: snyk_vulnerability_check
+    #needs: snyk_vulnerability_check
     runs-on: ubuntu-latest
 
     steps:
@@ -71,9 +71,7 @@ jobs:
     - name: Build with Maven & Snyk
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }} 
-      run: |
-       mvn snyk:monitor
-       mvn install
+      run: mvn install
     
     - uses: actions/upload-artifact@v2
       with:
