@@ -36,7 +36,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
           command: test
-          args: --severity-threshold=false --include-provided-dependencies=false
+          args: --severity-threshold=high
 
   build_mvn_aritfact:
 
