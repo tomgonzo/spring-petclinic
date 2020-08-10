@@ -33,7 +33,7 @@ jobs:
         uses: snyk/actions/maven@master
         continue-on-error: false
         env:
-          #SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
           SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
           command: monitor
@@ -57,7 +57,7 @@ jobs:
       uses: snyk/actions/maven@master
       continue-on-error: false
       env:
-        #SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+        SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
       with:
         command: monitor
