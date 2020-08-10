@@ -39,6 +39,7 @@ jobs:
 
   build_mvn_aritfact:
 
+    needs: snyk_vulnerability_check
     runs-on: ubuntu-latest
 
     steps:
