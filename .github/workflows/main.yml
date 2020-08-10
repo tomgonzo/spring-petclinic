@@ -33,9 +33,9 @@ jobs:
         uses: snyk/actions/node@master
         continue-on-error: false
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
-          command: monitor
+          command: test
           args: --severity-threshold=false --include-provided-dependencies=false
 
   build_mvn_aritfact:
