@@ -21,20 +21,34 @@ jobs:
     
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Cache Depdendencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
       - name: JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 11
-        
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        continue-on-error: true
+          java-version: 13
+
+      - name: Run Snyk to check for Maven vulnerabilities
+        uses: snyk/actions/maven@master
         env:
-         SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-         command: monitor
+          command: monitor
+          args: --severity-threshold=false --include-provided-dependencies=false
+      - name: Run Snyk to check Docker images for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: navikt/java:13
+          args: --severity-threshold=false
 
   build_mvn_aritfact:
 
