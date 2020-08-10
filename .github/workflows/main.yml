@@ -30,7 +30,7 @@ jobs:
       #    java-version: 13
 
       - name: Run Snyk to check for Maven vulnerabilities
-        uses: snyk/actions/node@master
+        uses: snyk/actions/docker@master
         continue-on-error: false
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
