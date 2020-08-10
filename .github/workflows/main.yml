@@ -24,13 +24,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 13
+      #- name: JDK
+      #  uses: actions/setup-java@v1
+      #  with:
+      #    java-version: 13
 
       - name: Run Snyk to check for Maven vulnerabilities
-        uses: snyk/actions/maven@master
+        uses: snyk/actions/node@master
         continue-on-error: false
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
