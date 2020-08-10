@@ -162,7 +162,7 @@
          </execution>
          <execution>
            <id>snyk-monitor</id>
-           <phase>package</phase>
+           <phase>install</phase>
            <goals>
              <goal>monitor</goal>
            </goals>
