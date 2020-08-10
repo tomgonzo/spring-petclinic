@@ -60,7 +60,7 @@ jobs:
       
     - name: Build with Maven & Snyk
       env:
-        SNYK_API_TOKEN: ${{ secrets.SNYK_API_TOKEN }} 
+        SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }} 
       run: |
        mvn snyk:monitor
        mvn install
