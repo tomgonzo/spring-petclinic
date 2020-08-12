@@ -15,8 +15,7 @@ env:
   REGISTRY_USERID: omearaj
   #TODO: Only change if you already have a spring-petclinic you want to keep. 
   IMAGE_NAME: spring-petclinic
-  #VERSION: v1.0.0
-  #IMAGE_BP_NAME: omearaj/spring-petclinic-bp:  
+  IMAGE_BP_NAME: omearaj/spring-petclinic-bp  
 
 jobs:
   snyk_vulnerability_check:
@@ -129,7 +128,7 @@ jobs:
       - name: Build image
         uses: mamezou-tech/buildpacks-action@master
         with:
-          image: 'jamies'
+          image: '{{ env.IMAGE_BP_NAME }}'
           tag: '1.0.0'
           path: 'spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
           builder: 'gcr.io/paketo-buildpacks/builder:base'
