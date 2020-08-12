@@ -9,11 +9,13 @@ on:
     branches: [ main ]
 
 env:
-  # TODO: Change variable to your image's name.
+  # TODO: Change registry URL if not using Docker Hub
   CONTAINER_REGISTRY_URL: https://registry.hub.docker.com
-  REGISTRY_USERID: omearaj  
+  # TODO: Change Registry USERID to your userid
+  REGISTRY_USERID: omearaj
+  #TODO: Only change if you already have a spring-petclinic you want to keep. 
   IMAGE_NAME: spring-petclinic
-  VERSION: v1.0.0
+  #VERSION: v1.0.0
   #IMAGE_BP_NAME: omearaj/spring-petclinic-bp:  
 
 jobs:
