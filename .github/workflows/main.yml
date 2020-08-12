@@ -124,6 +124,9 @@ jobs:
         with:
          name: spring-petclinic
          #path: /usr
+      
+      - name: Set env Image Path
+        run: echo ::set-env name=SCAN_IMAGE::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}/v1.0.0
            
       - name: Build image
         uses: mamezou-tech/buildpacks-action@master
@@ -139,7 +142,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
-         image: ${{ env.IMAGE_BP_NAME }}
+         image: ${{ env.SCAN_IMAGE }}
          command: monitor  
 
 
