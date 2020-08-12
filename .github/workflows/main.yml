@@ -139,7 +139,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
-         image: omearaj/${{ env.IMAGE_NAME }}
+         image: omearaj/${{ env.IMAGE_BP_NAME }}
          command: monitor  
 
 
