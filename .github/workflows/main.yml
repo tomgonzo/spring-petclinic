@@ -129,11 +129,11 @@ jobs:
       - name: Build image
         uses: mamezou-tech/buildpacks-action@master
         with:
-          image: '{{ env.IMAGE_NAME }}'
+          image: 'jamies'
           tag: '1.0.0'
-          path: './spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
+          path: 'spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
           builder: 'gcr.io/paketo-buildpacks/builder:base'
-          #env: 'BP_JVM_VERSION=8.*'
+          env: 'BP_JVM_VERSION=8.*'
     
       - name: Run Snyk to check Docker images for vulnerabilities
         uses: snyk/actions/docker@master
