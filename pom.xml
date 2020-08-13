@@ -171,7 +171,8 @@
        <configuration>
          <apiToken>${SNYK_TOKEN}</apiToken> 
          <failOnSeverity>false</failOnSeverity>
-         <org>springone-workshop/org>
+         <!-- Replace with your Org name -->
+         <org>springone-workshop>/org>
        </configuration>
       </plugin>
       <plugin>
