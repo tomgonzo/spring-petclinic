@@ -1,4 +1,7 @@
-# Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/)![Build,Push Image CI](https://github.com/snyk-partners/spring-petclinic/workflows/Build,Push%20Image%20CI/badge.svg)
+# Snyk SpringOne 2020 Dev WorkShop
+This repository is a fork of the popular Spring Petclinic sample application. We will apply Snyk DevSecOps tools to this application to build, monitor, identify, and remediate vulnerabilities and licensing issues. 
+
+## Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/)![Build,Push Image CI](https://github.com/snyk-partners/spring-petclinic/workflows/Build,Push%20Image%20CI/badge.svg)
 
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
