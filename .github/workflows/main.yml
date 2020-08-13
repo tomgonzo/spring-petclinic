@@ -138,7 +138,7 @@ jobs:
           env: 'BP_JVM_VERSION=8.*'
     
       - name: Set env SCAN_IMAGE
-        run: echo ::set-env name=SCAN_IMAGE::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}/v1.0.0
+        run: echo ::set-env name=SCAN_IMAGE::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}:v1.0.0
         
       - name: Run Snyk to check Docker images for vulnerabilities
         uses: snyk/actions/docker@master
