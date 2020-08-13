@@ -171,7 +171,7 @@
        <configuration>
          <apiToken>${SNYK_TOKEN}</apiToken> 
          <failOnSeverity>false</failOnSeverity>
-         <org>demo-3rw</org>
+         <org>springone-workshop/org>
        </configuration>
       </plugin>
       <plugin>
