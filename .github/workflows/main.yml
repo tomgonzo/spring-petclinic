@@ -109,43 +109,42 @@ jobs:
          command: monitor  
 
  # Push image to Container Registry
-  build-and-push-Buildpack-Image:
+ # build-and-push-Buildpack-Image:
     # Ensure test job passes before pushing image.
-    needs: build_mvn_aritfact
+ #  needs: build_mvn_aritfact
 
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+ #   runs-on: ubuntu-latest
+ #   if: github.event_name == 'push'
 
-    steps:
-      - uses: actions/checkout@v2
+ #   steps:
+ #     - uses: actions/checkout@v2
+ #     
+ #     - uses: actions/download-artifact@v2
+ #       with:
+ #        name: spring-petclinic
       
-      - uses: actions/download-artifact@v2
-        with:
-         name: spring-petclinic
-         #path: /usr
-      
-      - name: Set env Image Path
-        run: echo ::set-env name=IMAGE_BP_NAME1::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}
+ #     - name: Set env Image Path
+ #       run: echo ::set-env name=IMAGE_BP_NAME1::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}
            
-      - name: Build image
-        uses: mamezou-tech/buildpacks-action@master
-        with:
-          image: '${{ env.IMAGE_BP_NAME1 }}'
-          tag: 'v1.0.0'
-          path: 'spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
-          builder: 'gcr.io/paketo-buildpacks/builder:base'
-          env: 'BP_JVM_VERSION=8.*'
+ #     - name: Build image
+ #       uses: mamezou-tech/buildpacks-action@master
+ #       with:
+ #         image: '${{ env.IMAGE_BP_NAME1 }}'
+ #         tag: 'v1.0.0'
+ #         path: 'spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar'
+ #         builder: 'gcr.io/paketo-buildpacks/builder:base'
+ #         env: 'BP_JVM_VERSION=8.*'
     
-      - name: Set env SCAN_IMAGE
-        run: echo ::set-env name=SCAN_IMAGE::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}:v1.0.0
+ #     - name: Set env SCAN_IMAGE
+ #       run: echo ::set-env name=SCAN_IMAGE::${{ env.REGISTRY_USERID}}/${{ env.IMAGE_BP_NAME}}:v1.0.0
         
-      - name: Run Snyk to check Docker images for vulnerabilities
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-        with:
-         image: ${{ env.SCAN_IMAGE }}
-         command: monitor  
+ #     - name: Run Snyk to check Docker images for vulnerabilities
+ #       uses: snyk/actions/docker@master
+ #       env:
+ #         SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+ #       with:
+ #        image: ${{ env.SCAN_IMAGE }}
+ #        command: monitor  
 
 
 
