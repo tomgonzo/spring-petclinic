@@ -40,6 +40,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
           command: monitor
+          args: --severity-threshold=high  
 
   build_mvn_aritfact:
 
@@ -98,7 +99,6 @@ jobs:
          tag_with_ref: true
          tag_with_sha: true  
          add_git_labels: true  
-         #tags: latest
       
       - name: Run Snyk to check Docker images for vulnerabilities
         uses: snyk/actions/docker@master
