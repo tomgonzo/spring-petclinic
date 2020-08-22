@@ -35,12 +35,12 @@ jobs:
 
       - name: Run Snyk to check for Maven vulnerabilities
         uses: snyk/actions/maven@master
-        continue-on-error: false
+        #continue-on-error: false
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
         with:
           command: monitor
-          args: --severity-threshold=high --reachable 
+          args: --severity-threshold=high
 
   build_mvn_aritfact:
 
